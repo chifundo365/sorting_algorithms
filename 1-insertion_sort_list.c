@@ -10,7 +10,6 @@ void insertion_sort_list(listint_t **list)
 
 	while (current)
 	{	prev = current->prev;
-
 		if (prev && prev->n > current->n)
 		{	lnode = current->prev;
 			while (prev)
@@ -18,7 +17,8 @@ void insertion_sort_list(listint_t **list)
 				if (current->n >= prev->n)
 				{       temp = prev->next;
 					current->prev->next = current->next;
-					current->next->prev = current->prev;
+					if (current->next)
+						current->next->prev = current->prev;
 					prev->next = current;
 					current->prev = prev;
 					current->next = temp;
